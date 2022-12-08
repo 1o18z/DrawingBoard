@@ -2,12 +2,20 @@ const colorOptions = Array.from(document.getElementsByClassName("color-option"))
 // 배열 생성 (그냥 가져오면 HTMLCollection으로 줘서 ㅇㅇ)
 const lineWidth = document.getElementById("line-width"); // id가 line-width인 input 가져와서 lineWidth라 선언
 const color = document.getElementById("color");
+const modeBtn = document.getElementById("mode-btn");
+const resetBtn = document.getElementById("reset-btn");
+const eraseBtn = document.getElementById("erase-btn");
 const canvas = document.querySelector("canvas"); // index.html에서 canvas 가져옴
  const ctx = canvas.getContext("2d");
+
+ const CANVAS_WIDTH = 400;
+ const CANVAS_HEIGHT = 400;
+
  canvas.width = 300; // 캔버스 너비 800
  canvas.height = 300; // 캔버스 높이 800
  ctx.lineWidth = lineWidth.value; // 위에서 지정한 lineWidth(id가 line-width인 input)의 기본값을 ctx의 lineWidth에도 적용
 let isPainting = false; // isPainting 기본값 false
+let isFilling = false;
 
  function onMove(event){
     if(isPainting){
@@ -43,6 +51,34 @@ function onColorClick(event){
     color.value =  event.target.dataset.color;
     // 원래 있던 색상표에 현재 선택된 색상 보여주기 위함
 }
+function onModeClick(event){
+    if(isFilling){
+        isFilling = false;
+        modeBtn.innerText = "Fill";
+    }else{
+        isFilling = true;
+        modeBtn.innerText = "Draw";
+        canvas.fillStyle = event.target.dataset.color;
+    }
+
+}
+function onCanvasClick(){
+    if(isFilling){
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        // 사각형 그려서 채우기
+    }
+}
+function onResetClick(){
+    // window.location.reload();
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+}
+function onEraseClick(){
+    // 채우기 모드일 때 erase 선택하면 그리기 모드로 다시 바꿔줌
+        ctx.strokeStyle = "white";
+        isFilling = false;
+        modeBtn.innerText = "Fill";   
+}
 
 canvas.addEventListener("mousemove", onMove)
 canvas.addEventListener("mousedown", onMouseDown);
@@ -62,28 +98,12 @@ color.addEventListener("change", onColorChange);
 colorOptions.forEach(color => color.addEventListener("click", onColorClick))
                     // color마다 이벤트 리스너 추가 (color 클릭할 때마다 호출)
 
-//  const colors = [
-//     "#ff3838",
-//     "#ffb8b8",
-//     "#c56cf0",
-//     "#ff9f1a",
-//     "#fff200",
-//     "#32ff7e",
-//     "#7efff5",
-//     "#18dcff",
-//     "#7d5fff",
-//  ]
+modeBtn.addEventListener("click", onModeClick);
 
-// function onClick(event){
-//     ctx.beginPath(); //이렇게 하면 모든 선이 아닌 선마다 색이 달라짐
+canvas.addEventListener("click", onCanvasClick);
 
-//     ctx.moveTo(400,400); // 0.0부터 시작
-//     const color = colors[Math.floor(Math.random() * colors.length)];
-//     ctx.strokeStyle = color; // color의 랜덤 색을 선 스타일에 적용
-//     ctx.lineTo(event.offsetX, event.offsetY);
-//     //offset은 우리가 정해놓은 캔버스 공간의 위치를 말함
-//     ctx.stroke();
-// }
+resetBtn.addEventListener("click", onResetClick);
+eraseBtn.addEventListener("click", onEraseClick);
 
-// canvas.addEventListener("mousemove", onClick);
+
 
