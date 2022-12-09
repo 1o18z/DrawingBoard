@@ -10,13 +10,8 @@
 </head>
 
 <body>
-
-    <canvas></canvas>
-    <input id="line-width" type="range" min="1" max="10" value="5" step="0.5" />
-    <!-- 범위 조정하는 input 만들고 최솟값 1 최댓값 10 기본값 5 단위 0.5 -->
-    <input id="color" type="color" />
-
-    <div>
+    <div class="color-options">
+        <input id="color" type="color" />
         <div class="color-option" style="background-color:#ff7675" data-color="#ff7675"></div>
         <div class="color-option" style="background-color:#fab1a0" data-color="#fab1a0"></div>
         <div class="color-option" style="background-color:#ffeaa7" data-color="#ffeaa7"></div>
@@ -27,12 +22,25 @@
         <div class="color-option" style="background-color:#dfe6e9" data-color="#dfe6e9"></div>
         <div class="color-option" style="background-color:#636e72" data-color="#636e72"></div>
         <!-- data- 사용사면 원하는 뭐든지 넣을 수 있음 -->
+        <!-- 그냥 html에 데이터 넣어주고 나중에 자바스크립트에서 사용할 일 있으면 쓰면 됨 (data-) -->
     </div>
-    <button id="mode-btn">Fill</button>
-    <button id="reset-btn">Reset</button>
-    <button id="erase-btn">Eraser</button>
-
-
+    <canvas></canvas>
+    
+    <!-- 범위 조정하는 input 만들고 최솟값 1 최댓값 10 기본값 5 단위 0.5 -->
+    <div class="btns">
+        <input id="line-width" type="range" min="1" max="10" value="5" step="0.5" />
+        <button id="mode-btn">🎨Fill</button>
+        <button id="reset-btn">💣Reset</button>
+        <button id="erase-btn">🧹Eraser</button>
+        <label for="file">
+            <!-- label의 for값이랑 input의 id값이 같으면 됨 -->
+            Add Photo
+            <input type="file" accept="image/*" id="file" />
+        </label>
+        <!-- accept 안 써주면 사진 뿐 아니라 영상도 선택돼서 사진만 선택 가능하고 사진은 어느거나 상관 없다고 넣은 것 -->
+        <input type="text" id="text" placeholder="Add text here... :)" />
+        <button id="save">📁Save</button>
+    </div>
     <script src="app.js"></script>
 </body>
 
