@@ -10,6 +10,7 @@ const eraseBtn = document.getElementById("erase-btn");
 const saveBtn = document.getElementById("save");
 const fileInput = document.getElementById("file");
 const textInput = document.getElementById("text");
+const fontSize = document.getElementById("font-size"); 
 
 const canvas = document.querySelector("canvas"); // index.html에서 canvas 가져옴
 const ctx = canvas.getContext("2d");
@@ -22,6 +23,7 @@ ctx.lineWidth = lineWidth.value; // 위에서 지정한 lineWidth(id가 line-wid
 // 자바스크립트 실행될 때 ctx.lineWidth를 input의 기본값으로 초기화 해줌
 // 계속 lineWidth 업데이트 X. 딱 한 번만 실행됨
 ctx.lineCap = "round";
+// ctx.fontSize = fontSize.value;
 let isPainting = false; // isPainting 기본값 false
 let isFilling = false;
 
@@ -45,6 +47,9 @@ function onMouseUp() {
 function onLineWidthChange(event) {
     ctx.lineWidth = event.target.value;
   }
+  // function onFontSizeChange(event) {
+  //   ctx.fontSize = event.target.value;
+  // }
   
   function onColorChange(event) {
     ctx.strokeStyle = event.target.value;
@@ -63,10 +68,10 @@ function onLineWidthChange(event) {
 function onModeClick() {
     if (isFilling) {
       isFilling = false;
-      modeBtn.innerText = "Fill";
+      modeBtn.innerText = "🎨Fill";
     } else {
       isFilling = true;
-      modeBtn.innerText = "Draw";
+      modeBtn.innerText = "🖍Draw";
     }
   }
 function onCanvasClick() {
@@ -84,7 +89,7 @@ function onEraseClick() {
     // 채우기 모드일 때 erase 선택하면 그리기 모드로 다시 바꿔줌
     ctx.strokeStyle = "white";
     isFilling = false;
-    modeBtn.innerText = "Fill";
+    modeBtn.innerText = "🎨Fill";
 }
 function onFileChange(event) {
     const file = event.target.files[0];
@@ -99,18 +104,21 @@ function onFileChange(event) {
 
   function onDoubleClick(event) {
     const text = textInput.value;
+    const textSize = fontSize.value ;
+
     if (text !== "") {
         ctx.save(); // save 사용해서 현재 상태, 색상, 스타일 등 저장 (3)
         ctx.lineWidth = 1; // 그래서 텍스트 실행 전에 선 굵기 1로 넣어줬더니 그림 브러쉬까지 1로 되어버림 (2)
-        ctx.font = "68px sans-serif"; // 글씨가 채워졌으면 하면 아래를 fillText로
+        ctx.font = `${textSize}px`;
         ctx.fillText(text, event.offsetX, event.offsetY);
         // 여기까지 하고 더블클릭해도 글씨가 뭔가 이상하게 나옴 (1)
         // -> line-width가 기본값 5로 되어있어서 그럼
         ctx.restore(); // save와 restore 사이에서는 마음껏 수정할 수 있지만 저장되지는 않음 (4)
         // 즉 save 와 restore 사이에 넣어준 선 굵기와 폰트는 ctx.strokeText를 사용할 때만 적용되고 끝나면 적용 안 됨 (5)
     }
+  }
 
-}
+
 function onSaveClick(){
     const url = canvas.toDataURL(); // 우리가 캔버스에 그린 그림을 URL로 변환하고 (1)
     const a = document.createElement("a"); // a 태그 만들어 가짜 린크 만든 후에 (2)
@@ -132,6 +140,7 @@ canvas.addEventListener("mouseleave", onMouseUp);
 // true면 선을 그릴거임
 
 lineWidth.addEventListener("change", onLineWidthChange);
+// fontSize.addEventListener("change", onFontSizeChange);
 color.addEventListener("change", onColorChange);
 // lineWidth가 change되면 onLineWidthChange함수
 // (= 변경되는 값을 값으로 보여줌)
@@ -150,4 +159,8 @@ eraseBtn.addEventListener("click", onEraseClick);
 fileInput.addEventListener("change", onFileChange);
 saveBtn.addEventListener("click", onSaveClick);
 
+const fontRange = document.querySelector("font-range");
+fontRange.addEventListener("input", function () {
+    const value = this.value;
+});
 
