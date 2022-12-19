@@ -10,7 +10,6 @@ const eraseBtn = document.getElementById("erase-btn");
 const saveBtn = document.getElementById("save");
 const fileInput = document.getElementById("file");
 const textInput = document.getElementById("text");
-const fontSize = document.getElementById("font-size"); 
 
 const canvas = document.querySelector("canvas"); // index.html에서 canvas 가져옴
 const ctx = canvas.getContext("2d");
@@ -23,7 +22,6 @@ ctx.lineWidth = lineWidth.value; // 위에서 지정한 lineWidth(id가 line-wid
 // 자바스크립트 실행될 때 ctx.lineWidth를 input의 기본값으로 초기화 해줌
 // 계속 lineWidth 업데이트 X. 딱 한 번만 실행됨
 ctx.lineCap = "round";
-ctx.fontSize = fontSize.value;
 let isPainting = false; // isPainting 기본값 false
 let isFilling = false;
 
@@ -139,7 +137,6 @@ canvas.addEventListener("mouseleave", onMouseUp);
 // true면 선을 그릴거임
 
 lineWidth.addEventListener("change", onLineWidthChange);
-fontSize.addEventListener("change", onFontSizeChange);
 color.addEventListener("change", onColorChange);
 // lineWidth가 change되면 onLineWidthChange함수
 // (= 변경되는 값을 값으로 보여줌)
