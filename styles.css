@@ -20,7 +20,8 @@ body{
     justify-content: space-between; 
     /* 처음과 마지막 item을 시작과 끝 부분에 정렬하고 나머지 item들을 일정 간격으로 정렬 */
     align-items: center;
-    background-color: rgba(218, 114, 147, 0.366);
+    background-image:url("/MAKER/flo.jpeg");
+    background-repeat: no-repeat;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
@@ -99,5 +100,8 @@ input#file {
 
 }
 input#line-width{
+    width: 100px;
+}
+input#font-size{
     width: 100px;
 }

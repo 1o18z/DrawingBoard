@@ -23,7 +23,7 @@ ctx.lineWidth = lineWidth.value; // 위에서 지정한 lineWidth(id가 line-wid
 // 자바스크립트 실행될 때 ctx.lineWidth를 input의 기본값으로 초기화 해줌
 // 계속 lineWidth 업데이트 X. 딱 한 번만 실행됨
 ctx.lineCap = "round";
-// ctx.fontSize = fontSize.value;
+ctx.fontSize = fontSize.value;
 let isPainting = false; // isPainting 기본값 false
 let isFilling = false;
 
@@ -47,9 +47,9 @@ function onMouseUp() {
 function onLineWidthChange(event) {
     ctx.lineWidth = event.target.value;
   }
-  // function onFontSizeChange(event) {
-  //   ctx.fontSize = event.target.value;
-  // }
+  function onFontSizeChange(event) {
+    ctx.fontSize = event.target.value;
+}
   
   function onColorChange(event) {
     ctx.strokeStyle = event.target.value;
@@ -104,12 +104,11 @@ function onFileChange(event) {
 
   function onDoubleClick(event) {
     const text = textInput.value;
-    const textSize = fontSize.value ;
-
+    const textSize = fontSize.value;
     if (text !== "") {
         ctx.save(); // save 사용해서 현재 상태, 색상, 스타일 등 저장 (3)
-        ctx.lineWidth = 1; // 그래서 텍스트 실행 전에 선 굵기 1로 넣어줬더니 그림 브러쉬까지 1로 되어버림 (2)
-        ctx.font = `${textSize}px`;
+        ctx.lineWidth = 100; // 그래서 텍스트 실행 전에 선 굵기 1로 넣어줬더니 그림 브러쉬까지 1로 되어버림 (2)
+        ctx.textSize = `${fontS}px`;
         ctx.fillText(text, event.offsetX, event.offsetY);
         // 여기까지 하고 더블클릭해도 글씨가 뭔가 이상하게 나옴 (1)
         // -> line-width가 기본값 5로 되어있어서 그럼
@@ -140,7 +139,7 @@ canvas.addEventListener("mouseleave", onMouseUp);
 // true면 선을 그릴거임
 
 lineWidth.addEventListener("change", onLineWidthChange);
-// fontSize.addEventListener("change", onFontSizeChange);
+fontSize.addEventListener("change", onFontSizeChange);
 color.addEventListener("change", onColorChange);
 // lineWidth가 change되면 onLineWidthChange함수
 // (= 변경되는 값을 값으로 보여줌)
@@ -158,9 +157,4 @@ eraseBtn.addEventListener("click", onEraseClick);
 
 fileInput.addEventListener("change", onFileChange);
 saveBtn.addEventListener("click", onSaveClick);
-
-const fontRange = document.querySelector("font-range");
-fontRange.addEventListener("input", function () {
-    const value = this.value;
-});
 
