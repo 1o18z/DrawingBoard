@@ -6,9 +6,9 @@
 canvas {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    border: 2px solid rgba(122, 121, 105, 0.674);
-    margin-top:65px;
-    box-shadow: 3px 4px 5px  rgb(186, 59, 103);
+    border: 4px solid rgba(210, 173, 49, 0.509);
+    margin-top:55px;
+    box-shadow: 3px 4px 10px  rgb(209, 208, 159);
 }
 
 body{
@@ -20,8 +20,7 @@ body{
     justify-content: space-between; 
     /* 처음과 마지막 item을 시작과 끝 부분에 정렬하고 나머지 item들을 일정 간격으로 정렬 */
     align-items: center;
-    background-image:url("/MAKER/flo.jpeg");
-    background-repeat: no-repeat;
+    background-color:rgba(254, 255, 213, 0.887);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
@@ -40,11 +39,11 @@ body{
     width:50px;
     height: 50px;
     cursor: pointer;
-    border: 3px rgba(255, 255, 255, 0.674) solid;
+    border: 5px rgba(255, 255, 255, 0.647) solid;
     border-radius: 25px;
     cursor: pointer;
     transition: transform ease-in-out .1s;
-    box-shadow: 5px 5px 2px rgba(168, 91, 115, 0.366);
+    box-shadow: 5px 5px 2px rgba(229, 206, 122, 0.366);
 }
 .color-option:hover {
     transform: scale(1.2);
@@ -59,7 +58,7 @@ body{
     width: 250px;
 }
 input#color {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
 button, label {
@@ -67,15 +66,16 @@ button, label {
     /* 버튼의 모든 css 제거 */
     padding:10px 0;
     text-align: center;
-    background-color: rgba(179, 14, 116, 0.674);
-    color:white;
+    background-color: rgba(255, 255, 255, 0.635);
+    border:2px solid rgba(255, 208, 0, 0.527);
+    color:rgb(100, 100, 100);
     cursor: pointer;
     font-weight: 500;
     border-radius: 50%;
     transition: opacity linear .1s;
     width: 60px;
     height: 40px;
-    box-shadow: 5px 5px 2px rgb(223, 160, 195);
+    box-shadow: 5px 5px 5px rgb(179, 171, 127);
 
 }
 button:hover{
@@ -87,9 +87,20 @@ input#text{
     text-align: center;
     border-radius: 10px;
     font-weight: 500;
-    background-color: white;
-    width: 100px;
+    background-color: rgba(255, 255, 255, 0.688);
+    border:2px solid rgba(128, 128, 128, 0.536);
+    width: 230px;
 
+}
+
+#line-width{
+    all:unset;
+    outline: none;
+    accent-color: rgba(231, 197, 104, 0.749);
+    background-color: rgb(255, 255, 255);
+    border:1px solid rgba(128, 128, 128, 0.437);
+    height: 5px;
+    width: 230px;
 }
 input#file {
     display: none; 
@@ -99,9 +110,47 @@ input#file {
     opacity: 0.5;
 
 }
-input#line-width{
-    width: 100px;
-}
 input#font-size{
     width: 100px;
+}
+#me{
+    font-size: 2.3em;
+}
+#my{
+    display: none;
+    font-size: 3em;
+    flex-wrap: nowrap;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgba(212, 194, 108, 0.317);
+    border-radius: 20px;
+    /* display: flex; */
+}
+
+.image{
+    /* flex:1; */
+}
+#img1{
+    margin-top:10px;
+}
+#img2{
+    padding-right: 13px;
+    padding-bottom: 13px;
+}
+#img3{
+    padding-bottom: 10px;
+    margin-right: 15px;
+}
+#my h1{
+    font-size: 0.5em;
+    color:rgb(7, 7, 7);
+    -webkit-text-stroke: 0.8px rgb(251, 188, 15);
+
+}
+#center{
+    font-size: 4em;
+    position: fixed;
+    margin-left: 50%;
+    margin-bottom:500px;
 }

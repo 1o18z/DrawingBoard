@@ -10,7 +10,7 @@
 </head>
 
 <body>
-        
+        <h3 id="center">🐥</h3>
         <div class="color-options">
             <div class="color-option" style="background-color:#f46161" data-color="#f46161"></div>
             <div class="color-option" style="background-color:#f69b86" data-color="#f69b86"></div>
@@ -40,10 +40,17 @@
             <input type="file" accept="image/*" id="file" />
         </label>
         <button id="save">📁Save</button>
+        <button id="me">🐥</button>
 
         <!-- accept 안 써주면 사진 뿐 아니라 영상도 선택돼서 사진만 선택 가능하고 사진은 어느거나 상관 없다고 넣은 것 -->
-        <input id="line-width" type="range" min="1" max="10" value="5" step="0.5" />
+        <input id="line-width" type="range" min="1" max="50" value="25" step="1" />
         <input type="text" id="text" placeholder="Add text here... :)" />
+        <div id="my">
+           <img class="image" src="git.png" id="img1" width="80" height="80">
+           <img class="image" src="insta.png" id="img2" width="50" height="50">
+           <img class="image" src="mail.png" id="img3" width="55" height="55">
+            <h1>Dev@1o18z</h1>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
